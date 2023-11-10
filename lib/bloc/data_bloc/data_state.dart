@@ -27,3 +27,15 @@ class DataEditedState extends DataState {
 class TextFieldShownState extends DataState {}
 
 class TextFieldHiddenState extends DataState {}
+
+class ShowFirstTextFieldState extends DataState {}
+
+class ShowSecondTextFieldState extends DataState {}
+
+class ShowThirdTextFieldState extends DataState {}
+
+class ShowFourthTextFieldState extends DataState {}
+
+class ShowFifthTextFieldState extends DataState {}
+
+class DataAddedToAllFieldsState extends DataState {}

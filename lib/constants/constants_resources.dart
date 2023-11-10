@@ -18,5 +18,5 @@ class ConstantsResources {
   static const int EMPTY_LIST = 0;
   static const int MINIMUM_LENGTH = 1;
   static const int NUMBER_MAX_LENGTH = 4;
-
+  static const int DEFAULT_VALUE = 0;
 }

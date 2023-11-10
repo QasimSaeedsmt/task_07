@@ -6,10 +6,14 @@ import '../../constants/string_resources.dart';
 
 class CustomTextField extends StatelessWidget {
   final int labelNo;
+  final FocusNode focusNode;
   final TextEditingController controller;
 
   const CustomTextField(
-      {super.key, required this.labelNo, required this.controller});
+      {super.key,
+      required this.labelNo,
+      required this.controller,
+      required this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +21,7 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
           vertical: DimensionResources.D_5, horizontal: DimensionResources.D_5),
       child: TextFormField(
+        focusNode: focusNode,
         maxLength: ConstantsResources.NUMBER_MAX_LENGTH,
         controller: controller,
         keyboardType: TextInputType.number,

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:task_07/constants/constants_resources.dart';
 
 import '../constants/dimentions_resources.dart';
 import '../constants/string_resources.dart';
@@ -19,17 +20,16 @@ class _GraphScreenState extends State<GraphScreen> {
   Widget build(BuildContext context) {
     final data = widget.data ??
         DataModel(
-          name: "Default Name",
-          value2: 0,
-          value3: 0,
-          value4: 0,
-          value5: 0,
-          value1: 0,
+          name: StringResources.DEFAULT_NAME,
+          value2: ConstantsResources.DEFAULT_VALUE,
+          value3: ConstantsResources.DEFAULT_VALUE,
+          value4: ConstantsResources.DEFAULT_VALUE,
+          value5: ConstantsResources.DEFAULT_VALUE,
+          value1: ConstantsResources.DEFAULT_VALUE,
         );
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(StringResources.GRAPH_SCREEN_TITLE),
+        title: Text(data.name ?? StringResources.EMPTY_STRING),
       ),
       body: LineChart(
         LineChartData(
@@ -45,11 +45,16 @@ class _GraphScreenState extends State<GraphScreen> {
               barWidth: DimensionResources.D_6,
               dotData: const FlDotData(show: false),
               spots: [
-                FlSpot(DimensionResources.D_0, data.value1.toDouble()),
-                FlSpot(DimensionResources.D_1, data.value2.toDouble()),
-                FlSpot(DimensionResources.D_2, data.value3.toDouble()),
-                FlSpot(DimensionResources.D_3, data.value4.toDouble()),
-                FlSpot(DimensionResources.D_4, data.value5.toDouble()),
+                FlSpot(DimensionResources.D_0,
+                    data.value1?.toDouble() ?? DimensionResources.D_0),
+                FlSpot(DimensionResources.D_1,
+                    data.value2?.toDouble() ?? DimensionResources.D_1),
+                FlSpot(DimensionResources.D_2,
+                    data.value3?.toDouble() ?? DimensionResources.D_2),
+                FlSpot(DimensionResources.D_3,
+                    data.value4?.toDouble() ?? DimensionResources.D_3),
+                FlSpot(DimensionResources.D_4,
+                    data.value5?.toDouble() ?? DimensionResources.D_4),
               ],
             ),
           ],

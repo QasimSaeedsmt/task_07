@@ -33,3 +33,15 @@ class EditDataEvent extends DataEvent {
 class ShowTextFieldsEvent extends DataEvent {}
 
 class HideTextFieldsEvent extends DataEvent {}
+
+class ShowFirstTextFieldEvent extends DataEvent {}
+
+class ShowSecondTextFieldEvent extends DataEvent {}
+
+class ShowThirdTextFieldEvent extends DataEvent {}
+
+class ShowFourthTextFieldEvent extends DataEvent {}
+
+class ShowFifthTextFieldEvent extends DataEvent {}
+
+class DataAddedToAllFieldsEvent extends DataEvent {}

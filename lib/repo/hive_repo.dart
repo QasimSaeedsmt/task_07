@@ -7,14 +7,12 @@ class HiveRepo {
 
   get box1 => _box1;
 
-  static void addNewValue(
-    String name,
-    int value1,
-    int value2,
-    int value3,
-    int value4,
-    int value5,
-  ) {
+  static void addNewValue(String name,
+      int value1,
+      int value2,
+      int value3,
+      int value4,
+      int value5,) {
     var data = DataModel(
         name: name,
         value2: value2,

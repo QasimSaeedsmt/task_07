@@ -28,6 +28,17 @@ class _AddNewScreenState extends State<AddNewScreen> {
   final valueFourController = TextEditingController();
   final valueFiveController = TextEditingController();
   final nameController = TextEditingController();
+  final focusNodeOne = FocusNode();
+  final focusNodeTwo = FocusNode();
+  final focusNodeThree = FocusNode();
+  final focusNodeFour = FocusNode();
+  final focusNodeFive = FocusNode();
+
+  @override
+  void initState() {
+    context.read<DataBloc>().add(ShowFirstTextFieldEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,62 +50,110 @@ class _AddNewScreenState extends State<AddNewScreen> {
         actions: [
           ElevatedButton(
               onPressed: () {
-                dataBloc.add(ShowTextFieldsEvent());
+                dataBloc.add(ShowFirstTextFieldEvent());
               },
-              child: const Text(StringResources.ADD_NEW))
+              child: const Text(StringResources.ADD_NEW)),
         ],
       ),
       body: BlocBuilder<DataBloc, DataState>(
         builder: (context, state) {
-          if (state is TextFieldShownState) {
-            return Padding(
-                padding: const EdgeInsets.all(DimensionResources.D_16),
-                child: SingleChildScrollView(
-                  child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          Column(
-                            children: [
-                              TextFormField(
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return StringResources.NAME_VALIDATION_TEXT;
-                                  }
-                                  return null;
-                                },
-                                controller: nameController,
-                                decoration: const InputDecoration(
-                                    labelText:
-                                        StringResources.NAME_FIELD_LABEL),
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      ResponsiveConstants.S_2),
-                              const Text(StringResources.INSTRUCTION_TEXT),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      ResponsiveConstants.S_2),
-                              CustomTextField(
-                                  labelNo: ConstantsResources.LABEL_NO_ONE,
-                                  controller: valueOneController),
-                              CustomTextField(
-                                  labelNo: ConstantsResources.LABEL_NO_TWO,
-                                  controller: valueTwoController),
-                              CustomTextField(
-                                  labelNo: ConstantsResources.LABEL_NO_THREE,
-                                  controller: valueThreeController),
-                              CustomTextField(
-                                  labelNo: ConstantsResources.LABEL_NO_FOUR,
-                                  controller: valueFourController),
-                              CustomTextField(
-                                  labelNo: ConstantsResources.LABEL_NO_FIVE,
-                                  controller: valueFiveController),
-                            ],
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
+          return Padding(
+              padding: const EdgeInsets.all(DimensionResources.D_16),
+              child: SingleChildScrollView(
+                child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return StringResources.NAME_VALIDATION_TEXT;
+                                }
+                                return null;
+                              },
+                              controller: nameController,
+                              decoration: const InputDecoration(
+                                  labelText: StringResources.NAME_FIELD_LABEL),
+                            ),
+                            SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    ResponsiveConstants.S_2),
+                            const Text(StringResources.INSTRUCTION_TEXT),
+                            SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    ResponsiveConstants.S_2),
+                            dataBloc.state is ShowFirstTextFieldState
+                                ? CustomTextField(
+                                    focusNode: focusNodeOne,
+                                    labelNo: ConstantsResources.LABEL_NO_ONE,
+                                    controller: valueOneController)
+                                : dataBloc.state is ShowSecondTextFieldState
+                                    ? CustomTextField(
+                                        focusNode: focusNodeTwo,
+                                        labelNo:
+                                            ConstantsResources.LABEL_NO_TWO,
+                                        controller: valueTwoController)
+                                    : state is ShowThirdTextFieldState
+                                        ? CustomTextField(
+                                            focusNode: focusNodeThree,
+                                            labelNo: ConstantsResources
+                                                .LABEL_NO_THREE,
+                                            controller: valueThreeController)
+                                        : state is ShowFourthTextFieldState
+                                            ? CustomTextField(
+                                                focusNode: focusNodeFour,
+                                                labelNo: ConstantsResources
+                                                    .LABEL_NO_FOUR,
+                                                controller: valueFourController)
+                                            : CustomTextField(
+                                                focusNode: focusNodeFive,
+                                                labelNo: ConstantsResources
+                                                    .LABEL_NO_FIVE,
+                                                controller: valueFiveController)
+                          ],
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              if (dataBloc.state is ShowFirstTextFieldState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  focusNodeTwo.requestFocus();
+                                  dataBloc.add(ShowSecondTextFieldEvent());
+                                }
+                              } else if (dataBloc.state
+                                  is ShowSecondTextFieldState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  focusNodeThree.requestFocus();
+
+                                  dataBloc.add(ShowThirdTextFieldEvent());
+                                }
+                              } else if (dataBloc.state
+                                  is ShowThirdTextFieldState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  focusNodeFour.requestFocus();
+
+                                  dataBloc.add(ShowFourthTextFieldEvent());
+                                }
+                              } else if (dataBloc.state
+                                  is ShowFourthTextFieldState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  focusNodeFive.requestFocus();
+                                }
+                                dataBloc.add(ShowFifthTextFieldEvent());
+                              } else if (dataBloc.state
+                                  is ShowFifthTextFieldState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  dataBloc.add(DataAddedToAllFieldsEvent());
+                                }
+                              } else if (state is DataAddedToAllFieldsState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
                                   dataBloc.add(AddDataEvent(
                                     value1: int.parse(valueOneController.text),
                                     name: nameController.text,
@@ -113,20 +172,14 @@ class _AddNewScreenState extends State<AddNewScreen> {
                                   valueThreeController.clear();
                                   valueFourController.clear();
                                   valueFiveController.clear();
+                                  dataBloc.add(ShowFirstTextFieldEvent());
                                 }
-                              },
-                              child: const Text(StringResources.DONE)),
-                        ],
-                      )),
-                ));
-          }
-
-          return const Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: DimensionResources.D_5,
-                vertical: DimensionResources.D_8),
-            child: Text(StringResources.HIDDEN_STATE_MESSAGE),
-          );
+                              }
+                            },
+                            child: const Text(StringResources.DONE)),
+                      ],
+                    )),
+              ));
         },
       ),
     );

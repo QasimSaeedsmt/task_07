@@ -22,8 +22,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   TextEditingController controller = TextEditingController();
   List<DataModel>? updatedList;
-
-  @override
+@override
   void initState() {
     var box = Boxes.getData();
     updatedList = box.values.toList().cast<DataModel>();

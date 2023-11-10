@@ -39,4 +39,5 @@ class StringResources {
   static const String VALIDATION_TEXT = "Enter a value";
   static const String NUMBER_VALIDATION = 'Please enter a valid number';
   static const String NAME_VALIDATION_TEXT = "Enter a name";
+  static const String DEFAULT_NAME = "Default Name";
 }

@@ -34,5 +34,20 @@ class DataBloc extends Bloc<DataEvent, DataState> {
 
     on<HideTextFieldsEvent>((event, emit) => emit(TextFieldHiddenState()));
     on<ShowTextFieldsEvent>((event, emit) => emit(TextFieldShownState()));
+
+    on<ShowFirstTextFieldEvent>((event, emit) {
+      emit(ShowFirstTextFieldState());
+    });
+    on<ShowSecondTextFieldEvent>(
+        (event, emit) => emit(ShowSecondTextFieldState()));
+    on<ShowThirdTextFieldEvent>(
+        (event, emit) => emit(ShowThirdTextFieldState()));
+    on<ShowFourthTextFieldEvent>(
+        (event, emit) => emit(ShowFourthTextFieldState()));
+    on<ShowFifthTextFieldEvent>(
+        (event, emit) => emit(ShowFifthTextFieldState()));
+
+    on<DataAddedToAllFieldsEvent>(
+        (event, emit) => emit(DataAddedToAllFieldsState()));
   }
 }
