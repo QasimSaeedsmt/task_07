@@ -7,7 +7,7 @@ import 'data_event.dart';
 import 'data_state.dart';
 
 class DataBloc extends Bloc<DataEvent, DataState> {
-  DataBloc() : super(DataInitial(dataList: [])) {
+  DataBloc() : super(DataInitial()) {
     on<AddDataEvent>((event, emit) {
       var box = Boxes.getData();
       HiveRepo.addNewValue(event.name, event.value1, event.value2, event.value3,
@@ -20,8 +20,8 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       var deletedIndex = await HiveRepo.deleteValue(event.index);
       if (deletedIndex != null) {
         var box = Boxes.getData();
-        List<DataModel> uL = box.values.toList().cast<DataModel>();
-        emit(DataDeletedState(updatedList: uL));
+        List<DataModel> updatedList = box.values.toList().cast<DataModel>();
+        emit(DataDeletedState(updatedList: updatedList));
       } else {}
     });
 

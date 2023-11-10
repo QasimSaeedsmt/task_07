@@ -14,6 +14,8 @@ class DialogUtils {
             return AlertDialog(
               title: const Text(StringResources.EDIT),
               content: TextFormField(
+                decoration: const InputDecoration(
+                    labelText: StringResources.EDIT_FIELD_LABEL),
                 controller: editingController,
               ),
               actions: <Widget>[

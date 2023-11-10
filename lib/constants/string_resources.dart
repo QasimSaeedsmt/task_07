@@ -33,9 +33,7 @@ class StringResources {
   static const String NO = "No";
   static const String OK = "Ok";
   static const String CONFIRMATION = "Confirmation";
-  static const String PERMISSION_ALREADY_GIVEN = "Permission Already given";
-  static const String PERMISSION_MSG =
-      "Allow storage access for file operations.";
+  static const String EDIT_FIELD_LABEL = "Enter a new Name";
 
   static const String VALUE_LABEL = "Value";
   static const String VALIDATION_TEXT = "Enter a value";

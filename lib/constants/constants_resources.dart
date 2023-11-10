@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:task_07/data/data_model/data_model.dart';
+
 
 class ConstantsResources {
   static const String ALL_DIGITS = '0123456789';
@@ -17,16 +17,6 @@ class ConstantsResources {
   //
   static const int EMPTY_LIST = 0;
   static const int MINIMUM_LENGTH = 1;
-
   static const int NUMBER_MAX_LENGTH = 4;
 
-  static var defaultData = <DataModel>{
-    DataModel(
-        name: "Default values",
-        value2: 2,
-        value3: 3,
-        value4: 4,
-        value5: 5,
-        value1: 1)
-  };
 }

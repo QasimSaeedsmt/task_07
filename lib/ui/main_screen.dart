@@ -10,6 +10,7 @@ import 'package:task_07/utils/dialog_utils.dart';
 
 import '../bloc/data_bloc/data_bloc.dart';
 import '../bloc/data_bloc/data_state.dart';
+import '../data/boxes..dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,6 +22,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   TextEditingController controller = TextEditingController();
   List<DataModel>? updatedList;
+
+  @override
+  void initState() {
+    var box = Boxes.getData();
+    updatedList = box.values.toList().cast<DataModel>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

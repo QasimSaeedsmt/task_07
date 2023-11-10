@@ -3,9 +3,7 @@ import 'package:task_07/data/data_model/data_model.dart';
 abstract class DataState {}
 
 class DataInitial extends DataState {
-  final List<DataModel>? dataList;
 
-  DataInitial({this.dataList});
 }
 
 class DataAddedState extends DataState {
