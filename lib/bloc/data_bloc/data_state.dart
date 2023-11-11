@@ -19,7 +19,7 @@ class DataDeletedState extends DataState {
 }
 
 class DataEditedState extends DataState {
-  List updatedList;
+  List<DataModel> updatedList;
 
   DataEditedState({required this.updatedList});
 }
@@ -39,3 +39,9 @@ class ShowFourthTextFieldState extends DataState {}
 class ShowFifthTextFieldState extends DataState {}
 
 class DataAddedToAllFieldsState extends DataState {}
+
+class DataSubmittedState extends DataState {
+  List<DataModel> updatedList;
+
+  DataSubmittedState({required this.updatedList});
+}

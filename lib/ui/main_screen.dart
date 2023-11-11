@@ -22,7 +22,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   TextEditingController controller = TextEditingController();
   List<DataModel>? updatedList;
-@override
+  @override
   void initState() {
     var box = Boxes.getData();
     updatedList = box.values.toList().cast<DataModel>();
@@ -51,9 +51,10 @@ class _MainScreenState extends State<MainScreen> {
             updatedList = state.updatedList;
           }
           if (state is DataAddedState) {
-            final Set<DataModel> uniqueData = Set.from(updatedList ?? [])
-              ..addAll(state.dataList);
-            updatedList = uniqueData.toList();
+            updatedList = state.dataList;
+          }
+          if (state is DataEditedState) {
+            updatedList = state.updatedList;
           }
           return SingleChildScrollView(
             child: Column(

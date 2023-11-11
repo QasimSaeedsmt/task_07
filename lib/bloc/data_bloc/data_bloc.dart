@@ -8,36 +8,34 @@ import 'data_state.dart';
 
 class DataBloc extends Bloc<DataEvent, DataState> {
   DataBloc() : super(DataInitial()) {
-    on<AddDataEvent>((event, emit) {
-      var box = Boxes.getData();
-      HiveRepo.addNewValue(event.name, event.value1, event.value2, event.value3,
-          event.value4, event.value5);
-      List<DataModel> updatedList = box.values.toList().cast<DataModel>();
-      emit(DataAddedState(dataList: updatedList));
-    });
-
-    on<DeleteDataEvent>((event, emit) async {
-      var deletedIndex = await HiveRepo.deleteValue(event.index);
-      if (deletedIndex != null) {
-        var box = Boxes.getData();
-        List<DataModel> updatedList = box.values.toList().cast<DataModel>();
-        emit(DataDeletedState(updatedList: updatedList));
-      } else {}
-    });
-
-    on<EditDataEvent>((event, emit) {
-      HiveRepo.editExistingValue(event.index, event.name);
-      var box = Boxes.getData();
-      List<DataModel> updatedList = box.values.toList().cast<DataModel>();
-      emit(DataEditedState(updatedList: updatedList));
-    });
-
-    on<HideTextFieldsEvent>((event, emit) => emit(TextFieldHiddenState()));
-    on<ShowTextFieldsEvent>((event, emit) => emit(TextFieldShownState()));
+    // Existing logic...
 
     on<ShowFirstTextFieldEvent>((event, emit) {
       emit(ShowFirstTextFieldState());
     });
+
+    on<EditDataEvent>((event, emit) {
+      var box = Boxes.getData();
+      HiveRepo.editExistingValue(event.index, event.name);
+      List<DataModel> updatedList = box.values.toList().cast<DataModel>();
+      emit(DataEditedState(updatedList: updatedList));
+    });
+
+    on<AddDataEvent>((event, emit) {
+      HiveRepo.addNewValue(event.name, event.value1, event.value2, event.value3,
+          event.value4, event.value5);
+      var box = Boxes.getData();
+      List<DataModel> updatedList = box.values.toList().cast<DataModel>();
+      emit(DataAddedState(dataList: updatedList));
+    });
+
+    on<DeleteDataEvent>((event, emit) {
+      HiveRepo.deleteValue(event.index);
+      var box = Boxes.getData();
+      List<DataModel> updatedList = box.values.toList().cast<DataModel>();
+      emit(DataDeletedState(updatedList: updatedList));
+    });
+
     on<ShowSecondTextFieldEvent>(
         (event, emit) => emit(ShowSecondTextFieldState()));
     on<ShowThirdTextFieldEvent>(
@@ -46,8 +44,5 @@ class DataBloc extends Bloc<DataEvent, DataState> {
         (event, emit) => emit(ShowFourthTextFieldState()));
     on<ShowFifthTextFieldEvent>(
         (event, emit) => emit(ShowFifthTextFieldState()));
-
-    on<DataAddedToAllFieldsEvent>(
-        (event, emit) => emit(DataAddedToAllFieldsState()));
   }
 }

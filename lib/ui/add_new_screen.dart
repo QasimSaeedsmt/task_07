@@ -28,11 +28,6 @@ class _AddNewScreenState extends State<AddNewScreen> {
   final valueFourController = TextEditingController();
   final valueFiveController = TextEditingController();
   final nameController = TextEditingController();
-  final focusNodeOne = FocusNode();
-  final focusNodeTwo = FocusNode();
-  final focusNodeThree = FocusNode();
-  final focusNodeFour = FocusNode();
-  final focusNodeFive = FocusNode();
 
   @override
   void initState() {
@@ -50,7 +45,25 @@ class _AddNewScreenState extends State<AddNewScreen> {
         actions: [
           ElevatedButton(
               onPressed: () {
-                dataBloc.add(ShowFirstTextFieldEvent());
+                if (dataBloc.state is ShowFirstTextFieldState &&
+                    _formKey.currentState!.validate()) {
+                  dataBloc.add(ShowSecondTextFieldEvent());
+                } else if (dataBloc.state is ShowSecondTextFieldState) {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    dataBloc.add(ShowThirdTextFieldEvent());
+                  }
+                } else if (dataBloc.state is ShowThirdTextFieldState) {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    dataBloc.add(ShowFourthTextFieldEvent());
+                  }
+                } else if (dataBloc.state is ShowFourthTextFieldState) {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    dataBloc.add(ShowFifthTextFieldEvent());
+                  }
+                } else if (dataBloc.state is ShowFifthTextFieldState) {
+                } else {
+                  dataBloc.add(ShowFirstTextFieldEvent());
+                }
               },
               child: const Text(StringResources.ADD_NEW)),
         ],
@@ -84,74 +97,41 @@ class _AddNewScreenState extends State<AddNewScreen> {
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     ResponsiveConstants.S_2),
-                            dataBloc.state is ShowFirstTextFieldState
-                                ? CustomTextField(
-                                    focusNode: focusNodeOne,
-                                    labelNo: ConstantsResources.LABEL_NO_ONE,
-                                    controller: valueOneController)
-                                : dataBloc.state is ShowSecondTextFieldState
-                                    ? CustomTextField(
-                                        focusNode: focusNodeTwo,
-                                        labelNo:
-                                            ConstantsResources.LABEL_NO_TWO,
-                                        controller: valueTwoController)
-                                    : state is ShowThirdTextFieldState
-                                        ? CustomTextField(
-                                            focusNode: focusNodeThree,
-                                            labelNo: ConstantsResources
-                                                .LABEL_NO_THREE,
-                                            controller: valueThreeController)
-                                        : state is ShowFourthTextFieldState
-                                            ? CustomTextField(
-                                                focusNode: focusNodeFour,
-                                                labelNo: ConstantsResources
-                                                    .LABEL_NO_FOUR,
-                                                controller: valueFourController)
-                                            : CustomTextField(
-                                                focusNode: focusNodeFive,
-                                                labelNo: ConstantsResources
-                                                    .LABEL_NO_FIVE,
-                                                controller: valueFiveController)
+                            if (dataBloc.state is ShowFirstTextFieldState ||
+                                dataBloc.state is ShowSecondTextFieldState ||
+                                dataBloc.state is ShowThirdTextFieldState ||
+                                dataBloc.state is ShowFourthTextFieldState ||
+                                dataBloc.state is ShowFifthTextFieldState)
+                              CustomTextField(
+                                  labelNo: ConstantsResources.LABEL_NO_ONE,
+                                  controller: valueOneController),
+                            if (dataBloc.state is ShowSecondTextFieldState ||
+                                dataBloc.state is ShowThirdTextFieldState ||
+                                dataBloc.state is ShowFourthTextFieldState ||
+                                dataBloc.state is ShowFifthTextFieldState)
+                              CustomTextField(
+                                  labelNo: ConstantsResources.LABEL_NO_TWO,
+                                  controller: valueTwoController),
+                            if (state is ShowThirdTextFieldState ||
+                                dataBloc.state is ShowFourthTextFieldState ||
+                                dataBloc.state is ShowFifthTextFieldState)
+                              CustomTextField(
+                                  labelNo: ConstantsResources.LABEL_NO_THREE,
+                                  controller: valueThreeController),
+                            if (state is ShowFourthTextFieldState ||
+                                state is ShowFifthTextFieldState)
+                              CustomTextField(
+                                  labelNo: ConstantsResources.LABEL_NO_FOUR,
+                                  controller: valueFourController),
+                            if (state is ShowFifthTextFieldState)
+                              CustomTextField(
+                                  labelNo: ConstantsResources.LABEL_NO_FIVE,
+                                  controller: valueFiveController)
                           ],
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              if (dataBloc.state is ShowFirstTextFieldState) {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  focusNodeTwo.requestFocus();
-                                  dataBloc.add(ShowSecondTextFieldEvent());
-                                }
-                              } else if (dataBloc.state
-                                  is ShowSecondTextFieldState) {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  focusNodeThree.requestFocus();
-
-                                  dataBloc.add(ShowThirdTextFieldEvent());
-                                }
-                              } else if (dataBloc.state
-                                  is ShowThirdTextFieldState) {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  focusNodeFour.requestFocus();
-
-                                  dataBloc.add(ShowFourthTextFieldEvent());
-                                }
-                              } else if (dataBloc.state
-                                  is ShowFourthTextFieldState) {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  focusNodeFive.requestFocus();
-                                }
-                                dataBloc.add(ShowFifthTextFieldEvent());
-                              } else if (dataBloc.state
-                                  is ShowFifthTextFieldState) {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  dataBloc.add(DataAddedToAllFieldsEvent());
-                                }
-                              } else if (state is DataAddedToAllFieldsState) {
+                              if (dataBloc.state is ShowFifthTextFieldState) {
                                 if (_formKey.currentState?.validate() ??
                                     false) {
                                   dataBloc.add(AddDataEvent(
@@ -166,13 +146,13 @@ class _AddNewScreenState extends State<AddNewScreen> {
                                   context.showSnackbar(
                                       StringResources.DATA_ADDED_SUCCESSFULLY,
                                       backgroundColor: Colors.green);
+
                                   nameController.clear();
                                   valueOneController.clear();
                                   valueTwoController.clear();
                                   valueThreeController.clear();
                                   valueFourController.clear();
                                   valueFiveController.clear();
-                                  dataBloc.add(ShowFirstTextFieldEvent());
                                 }
                               }
                             },

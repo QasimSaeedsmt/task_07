@@ -5,22 +5,22 @@ part 'data_model.g.dart';
 @HiveType(typeId: 0)
 class DataModel extends HiveObject {
   @HiveField(0)
-  String? name;
+  String name;
 
   @HiveField(1)
-  int? value2;
+  int value2;
 
   @HiveField(2)
-  int? value3;
+  int value3;
 
   @HiveField(3)
-  int? value4;
+  int value4;
 
   @HiveField(4)
-  int? value5;
+  int value5;
 
   @HiveField(5)
-  int? value1;
+  int value1;
 
   DataModel(
       {required this.name,
