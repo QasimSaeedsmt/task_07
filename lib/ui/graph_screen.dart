@@ -36,7 +36,7 @@ class _GraphScreenState extends State<GraphScreen> {
           minX: DimensionResources.D_0,
           minY: DimensionResources.D_0,
           maxX: DimensionResources.D_4,
-          maxY: DimensionResources.D_100,
+          maxY: DimensionResources.D_1000,
           borderData: FlBorderData(border: Border.all(color: Colors.green)),
           lineBarsData: [
             LineChartBarData(
@@ -57,7 +57,7 @@ class _GraphScreenState extends State<GraphScreen> {
           lineTouchData: const LineTouchData(enabled: true),
           extraLinesData: ExtraLinesData(
             horizontalLines: [
-              HorizontalLine(y: DimensionResources.D_1, color: Colors.red)
+              HorizontalLine(y: DimensionResources.D_1, color: Colors.black)
             ],
             verticalLines: [VerticalLine(x: DimensionResources.D_5)],
           ),

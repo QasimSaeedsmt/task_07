@@ -44,6 +44,7 @@ class DimensionResources {
   static const double D_98 = 98.0;
   static const double D_99 = 99.0;
   static const double D_100 = 100.0;
+  static const double D_1000 = 1000.0;
 
   static const int I_10 = 10;
 }

@@ -155,6 +155,15 @@ class _AddNewScreenState extends State<AddNewScreen> {
                                   valueFiveController.clear();
                                 }
                               }
+                              if (dataBloc.state is ShowFirstTextFieldState ||
+                                  dataBloc.state is ShowSecondTextFieldState ||
+                                  dataBloc.state is ShowThirdTextFieldState ||
+                                  dataBloc.state is ShowFourthTextFieldState) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  return;
+                                }
+                              }
                             },
                             child: const Text(StringResources.DONE)),
                       ],
