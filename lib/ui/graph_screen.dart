@@ -29,7 +29,7 @@ class _GraphScreenState extends State<GraphScreen> {
         );
     return Scaffold(
       appBar: AppBar(
-        title: Text(data.name ?? StringResources.EMPTY_STRING),
+        title: Text(data.name),
       ),
       body: LineChart(
         LineChartData(
@@ -45,16 +45,11 @@ class _GraphScreenState extends State<GraphScreen> {
               barWidth: DimensionResources.D_6,
               dotData: const FlDotData(show: false),
               spots: [
-                FlSpot(DimensionResources.D_0,
-                    data.value1?.toDouble() ?? DimensionResources.D_0),
-                FlSpot(DimensionResources.D_1,
-                    data.value2?.toDouble() ?? DimensionResources.D_1),
-                FlSpot(DimensionResources.D_2,
-                    data.value3?.toDouble() ?? DimensionResources.D_2),
-                FlSpot(DimensionResources.D_3,
-                    data.value4?.toDouble() ?? DimensionResources.D_3),
-                FlSpot(DimensionResources.D_4,
-                    data.value5?.toDouble() ?? DimensionResources.D_4),
+                FlSpot(DimensionResources.D_0, data.value1.toDouble()),
+                FlSpot(DimensionResources.D_1, data.value2.toDouble()),
+                FlSpot(DimensionResources.D_2, data.value3.toDouble()),
+                FlSpot(DimensionResources.D_3, data.value4.toDouble()),
+                FlSpot(DimensionResources.D_4, data.value5.toDouble()),
               ],
             ),
           ],

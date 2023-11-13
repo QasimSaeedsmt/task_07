@@ -81,7 +81,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                           children: [
                             TextFormField(
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value?.isEmpty ?? false) {
                                   return StringResources.NAME_VALIDATION_TEXT;
                                 }
                                 return null;

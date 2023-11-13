@@ -8,8 +8,6 @@ import 'data_state.dart';
 
 class DataBloc extends Bloc<DataEvent, DataState> {
   DataBloc() : super(DataInitial()) {
-    // Existing logic...
-
     on<ShowFirstTextFieldEvent>((event, emit) {
       emit(ShowFirstTextFieldState());
     });

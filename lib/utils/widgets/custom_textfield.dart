@@ -32,10 +32,10 @@ class CustomTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(DimensionResources.D_12),
                 borderSide: const BorderSide(color: Colors.green))),
         validator: (value) {
-          if (value!.isEmpty) {
+          if (value?.isEmpty ?? false) {
             return StringResources.VALIDATION_TEXT;
           }
-          if (int.tryParse(value) == null) {
+          if (int.tryParse(value!) == null) {
             return StringResources.NUMBER_VALIDATION;
           }
           return null;

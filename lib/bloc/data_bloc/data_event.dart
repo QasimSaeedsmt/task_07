@@ -45,7 +45,3 @@ class ShowFourthTextFieldEvent extends DataEvent {}
 class ShowFifthTextFieldEvent extends DataEvent {}
 
 class DataAddedToAllFieldsEvent extends DataEvent {}
-
-class ShowNextTextFieldEvent extends DataEvent {}
-
-class IncrementTextFieldIndexEvent extends DataEvent {}

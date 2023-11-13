@@ -75,6 +75,7 @@ class _MainScreenState extends State<MainScreen> {
                             Navigator.pop(context);
                             dataBloc.add(EditDataEvent(
                                 name: controller.text, index: index));
+                            controller.clear();
                           });
                         }, () {
                           Navigator.pop(context);
