@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:task_07/data/data_model/data_model.dart';
 import 'package:task_07/repo/hive_repo.dart';
 
 import '../../data/boxes..dart';
+import '../../data/dataModel/data_model.dart';
 import 'data_event.dart';
 import 'data_state.dart';
 

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_07/bloc/data_bloc/data_event.dart';
 import 'package:task_07/constants/constants_resources.dart';
 import 'package:task_07/constants/dimentions_resources.dart';
 import 'package:task_07/constants/responsive_constants.dart';
@@ -10,8 +9,9 @@ import 'package:task_07/constants/string_resources.dart';
 import 'package:task_07/extensions/build_context_extension.dart';
 import 'package:task_07/utils/widgets/custom_textfield.dart';
 
-import '../bloc/data_bloc/data_bloc.dart';
-import '../bloc/data_bloc/data_state.dart';
+import '../bloc/dataBloc/data_bloc.dart';
+import '../bloc/dataBloc/data_event.dart';
+import '../bloc/dataBloc/data_state.dart';
 
 class AddNewScreen extends StatefulWidget {
   const AddNewScreen({super.key});

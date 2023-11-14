@@ -4,7 +4,7 @@ import 'package:task_07/constants/constants_resources.dart';
 
 import '../constants/dimentions_resources.dart';
 import '../constants/string_resources.dart';
-import '../data/data_model/data_model.dart';
+import '../data/dataModel/data_model.dart';
 
 class GraphScreen extends StatefulWidget {
   final DataModel? data;

@@ -1,10 +1,8 @@
-import 'package:task_07/data/data_model/data_model.dart';
+import '../../data/dataModel/data_model.dart';
 
 abstract class DataState {}
 
-class DataInitial extends DataState {
-
-}
+class DataInitial extends DataState {}
 
 class DataAddedState extends DataState {
   final List<DataModel> dataList;

@@ -7,8 +7,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:task_07/constants/constants_resources.dart';
 import 'package:task_07/ui/main_screen.dart';
 
-import 'bloc/data_bloc/data_bloc.dart';
-import 'data/data_model/data_model.dart';
+import 'bloc/dataBloc/data_bloc.dart';
+import 'data/dataModel/data_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

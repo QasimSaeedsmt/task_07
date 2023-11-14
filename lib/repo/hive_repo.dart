@@ -1,6 +1,6 @@
-import 'package:task_07/data/data_model/data_model.dart';
 
 import '../data/boxes..dart';
+import '../data/dataModel/data_model.dart';
 
 class HiveRepo {
   final _box1 = Boxes.getData();
